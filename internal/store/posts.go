@@ -108,7 +108,7 @@ func (s *PostStore) DeleteByID (ctx context.Context, id int64) error {
 	return nil
 }
 
-func (s *PostStore) PatchByID (ctx context.Context, post *Post) error {
+func (s *PostStore) Update(ctx context.Context, post *Post) error {
 	query := `
 		UPDATE posts
 			SET title = $1,

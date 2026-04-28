@@ -4,17 +4,19 @@ import (
 	"context"
 	"database/sql"
 	"errors"
+	"time"
 )
 
 var (
 	ErrNotFound = errors.New("resource not found")
+	QueryTimeout = time.Second*5
 )
 
 type Storage struct {
 	Posts interface {
 		Create(context.Context, *Post) error
-		GetByID(context.Context, int64) (*Post, error)
-		DeleteByID(context.Context, int64) error
+		Get(context.Context, int64) (*Post, error)
+		Delete(context.Context, int64) error
 		Update(context.Context, *Post) error
 	}
 	Users interface {
